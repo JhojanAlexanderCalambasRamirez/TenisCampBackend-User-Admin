@@ -4,6 +4,7 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 import firebaseApp from "./firebase/credenciales";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
+import AdminPanel from "./screens/AdminPanel"; // Importa el nuevo componente
 
 const auth = getAuth(firebaseApp);
 const firestore = getFirestore(firebaseApp);
@@ -45,6 +46,11 @@ function App() {
 
   if (loading) {
     return <div>Cargando...</div>;
+  }
+
+  // Si el usuario es un administrador, muestra el panel de administración
+  if (usuario && usuario.rol === 'admin') {
+    return <AdminPanel />;
   }
 
   return (
