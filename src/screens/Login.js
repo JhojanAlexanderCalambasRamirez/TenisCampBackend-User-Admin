@@ -66,7 +66,7 @@ function Login() {
         } else if (error.code === "auth/user-not-found") {
           setFeedback("El usuario no existe.");
         } else {
-          setFeedback("Verifica tus credenciales, correo o contraseña.");
+          setFeedback("Rectifica los datos, correo o contraseña.");
         }
       }
     }
@@ -115,4 +115,3 @@ function Login() {
 }
 
 export default Login;
-
