@@ -1,6 +1,6 @@
 import React from "react";
 
-function UserView({ torneos, onRegistroTorneo }) {
+function UserView({ torneos, torneosRegistrados, onRegistroTorneo }) {
   return (
     <div>
       <h2>Interfaz de Usuario</h2>
@@ -13,12 +13,26 @@ function UserView({ torneos, onRegistroTorneo }) {
             <div>Imagen: <img src={torneo.imagenURL} alt="Imagen del torneo" /></div>
             <div>Cantidad máxima de participantes: {torneo.maxParticipantes}</div>
             <div>Participantes registrados: {torneo.participantesRegistrados}</div>
-            <button onClick={() => onRegistroTorneo(torneo.id)}>Registrarse</button>
+            {torneosRegistrados.includes(torneo.id) ? (
+              <div>¡Ya estás registrado en este torneo!</div>
+            ) : (
+              <button onClick={() => onRegistroTorneo(torneo.id)}>Registrarse</button>
+            )}
           </li>
         ))}
       </ul>
       <h3>Torneos Registrados:</h3>
-      {/* Aquí puedes mostrar los torneos a los que se ha inscrito el usuario */}
+      <ul>
+        {torneosRegistrados.map(torneoId => (
+          <li key={torneoId}>
+            <div>Nombre: {torneos.find(torneo => torneo.id === torneoId)?.nombre}</div>
+            <div>Fecha límite de inscripción: {torneos.find(torneo => torneo.id === torneoId)?.fechaLimite}</div>
+            <div>Imagen: <img src={torneos.find(torneo => torneo.id === torneoId)?.imagenURL} alt="Imagen del torneo" /></div>
+            <div>Cantidad máxima de participantes: {torneos.find(torneo => torneo.id === torneoId)?.maxParticipantes}</div>
+            <div>Participantes registrados: {torneos.find(torneo => torneo.id === torneoId)?.participantesRegistrados}</div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
