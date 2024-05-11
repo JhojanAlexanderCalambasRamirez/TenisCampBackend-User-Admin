@@ -16,3 +16,4 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 // Exportamos firebaseApp para poder utilizarla en cualquier lugar de la aplicación
 export default firebaseApp;
+
